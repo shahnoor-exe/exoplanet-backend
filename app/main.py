@@ -10,13 +10,17 @@ from app.model_loader import load_model
 app = FastAPI(title="Exoplanet Detection API", version="1.0.0")
 
 # CORS (for frontend integration)
+# CORS (for frontend integration)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # later restrict to frontend domain
-    allow_credentials=True,
+    allow_origins=[
+        "https://cosmic-discoverer.lovable.app"
+    ],
+    allow_credentials=False,   # keep False when using allow_origins with specific domains
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Load model
 model, threshold = load_model()
